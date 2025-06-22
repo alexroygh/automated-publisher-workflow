@@ -27,6 +27,17 @@ def split_text(text, max_tokens=2000):
 
     return chunks
 
+def get_multiline_input(prompt_msg="Enter your input (type 'END' on a new line to finish):"):
+    print(prompt_msg)
+    lines = []
+    while True:
+        line = input()
+        if line.strip() == "END":
+            break
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
 def agentic_flow(chapter):
     print("📖 Original Chapter:")
     print(chapter)
@@ -36,19 +47,28 @@ def agentic_flow(chapter):
 
     for i, chunk in enumerate(chunks):
         print(f"\n--- Processing Chunk {i+1}/{len(chunks)} ---")
+
         # Writing phase
         draft = ai_writer(chunk)
         print("\n✍️ AI Writer Output:\n", draft)
         use_draft = input("Use this draft as-is? (y/n): ")
         if use_draft.lower() != 'y':
-            draft = input("\nEnter your revised draft (or press ENTER to keep AI version):\n") or draft
+            revised_draft = get_multiline_input(
+                "\nEnter your revised draft (or press ENTER to keep AI version). Type 'END' to finish:"
+            )
+            if revised_draft:
+                draft = revised_draft
 
         # Review phase
         review = ai_reviewer(draft)
         print("\n🧐 AI Reviewer Output:\n", review)
         use_review = input("Use this reviewed version as-is? (y/n): ")
         if use_review.lower() != 'y':
-            review = input("\nEnter your revised review (or press ENTER to keep AI version):\n") or review
+            revised_review = get_multiline_input(
+                "\nEnter your revised review (or press ENTER to keep AI version). Type 'END' to finish:"
+            )
+            if revised_review:
+                review = revised_review
 
         # Edit phase
         edited = ai_editor(review)
@@ -58,9 +78,11 @@ def agentic_flow(chapter):
         while True:
             edit_choice = input("\nWould you like to revise this edited chunk again before finalization? (y/n): ")
             if edit_choice.lower() == 'y':
-                user_edit = input("\nEnter your updated version (or press ENTER to keep current version):\n")
-                if user_edit.strip():
-                    final_text = user_edit.strip()
+                user_edit = get_multiline_input(
+                    "\nEnter your updated version (or press ENTER to keep current version). Type 'END' to finish:"
+                )
+                if user_edit:
+                    final_text = user_edit
                 print("\n✅ Updated Text:\n", final_text)
             elif edit_choice.lower() == 'n':
                 break
@@ -71,3 +93,4 @@ def agentic_flow(chapter):
 
     final_output = "\n\n".join(outputs)
     return final_output
+
