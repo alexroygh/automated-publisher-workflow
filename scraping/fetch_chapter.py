@@ -8,8 +8,8 @@ def fetch_chapter_and_screenshot(url, output_dir="output"):
         page = browser.new_page()
         page.goto(url)
         content = page.content()
-        page.screenshot(path=f"{output_dir}/screenshot.png", full_page=True)
-        with open(f"{output_dir}/chapter.html", "w", encoding="utf-8") as f:
+        page.screenshot(path=f"{output_dir}/chapter_screenshot.png", full_page=True)
+        with open(f"{output_dir}/chapter_raw.html", "w", encoding="utf-8") as f:
             f.write(content)
         browser.close()
     return content

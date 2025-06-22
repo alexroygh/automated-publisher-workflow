@@ -4,7 +4,19 @@ import openai
 client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def ai_reviewer(spun_text):
-    prompt = f"You are an AI reviewer. Please improve the grammar, style, and coherence of the following rewritten book chapter.\n\n{spun_text}"
+    prompt = f"""You are a reviewer assisting in polishing draft chapter content.
+    Your tasks are to:
+    - Improve clarity, grammar, and structure
+    - Ensure a consistent writing tone
+    - Eliminate repetition or awkward phrasing
+    - Remove any residual web-related language or formatting
+
+    Do not introduce new information.
+
+    Review the following draft:
+
+    {spun_text}"""
+
     try:
         response = client.chat.completions.create(
             model="gpt-4",

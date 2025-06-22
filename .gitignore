@@ -5,7 +5,6 @@ __pycache__/
 .env
 
 # Local data
-output/
 logs/
 
 # Playwright cache

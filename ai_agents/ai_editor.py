@@ -4,7 +4,19 @@ import openai
 client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def ai_editor(reviewed_text):
-    prompt = f"You are an expert editor. Make final refinements to this content for clarity, tone, and polish.\n\n{reviewed_text}"
+    prompt = f"""You are an editor performing a final polish on a book chapter.
+    Ensure the output is:
+    - Clean, well-formatted, and publication-ready
+    - Free of spelling, grammar, or formatting errors
+    - Structured into paragraphs for readability
+    - Completely devoid of web-related junk like navigation labels or page metadata
+
+    Do not change the meaning of the text.
+
+    Finalize this text:
+
+    {reviewed_text}"""
+
     try:
         response = client.chat.completions.create(
             model="gpt-4",

@@ -4,7 +4,16 @@ import openai
 client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def ai_writer(chapter_text):
-    prompt = f"You are an AI book writer. Rewrite the following text with a creative twist while preserving its original meaning.\n\n{chapter_text}"
+    prompt = f"""You are a writer helping paraphrase raw web content into a clean, well-written chapter.
+
+    The input may include web artifacts like navigation menus, page footers, disclaimers, or HTML junk. Your task is to:
+    - Focus only on the actual chapter or story content
+    - Ignore non-literary text like "Wikisource", "edit", "navigation", headers, links, or references
+    - Paraphrase and rewrite the chapter in clean, flowing way.
+    
+    INPUT:
+    {chapter_text}"""
+
     try:
         response = client.chat.completions.create(
             model="gpt-4",
