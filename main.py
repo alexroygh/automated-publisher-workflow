@@ -27,7 +27,7 @@ if __name__ == "__main__":
     store_version(final_output, {"id": "book1_chapter1", "source": URL})
     with open("output/chapter_final.txt", "w", encoding="utf-8") as f:
         f.write(final_output)
-    print("\nSearch Result:\n", rl_search("Chapter about island and voyage", search_version))
+    print("\n✅ Search Result for text: Chapter about island and voyage\n", rl_search("Chapter about island and voyage", search_version))
 
 
 

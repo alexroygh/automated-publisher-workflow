@@ -22,6 +22,31 @@ It performs the following steps:
 
 ---
 
+
+## Agentic Flow Sequence (Mermaid Diagram)
+
+```mermaid
+flowchart TD
+    A[Start] --> B[Fetch HTML from URL]
+    B --> C[Extract Clean Text with BeautifulSoup]
+    C --> D[Split Text into Chunks]
+    D --> E[Loop over Chunks]
+    E --> F[AI Writer]
+    F --> G[Human Feedback on Draft]
+    G --> H[AI Reviewer]
+    H --> I[Human Feedback on Review]
+    I --> J[AI Editor]
+    J --> K[Optional Human Edits]
+    K --> L{More Chunks?}
+    L -- Yes --> E
+    L -- No --> M[Combine Final Text]
+    M --> N[Store in ChromaDB]
+    N --> O[Perform RL Search]
+    O --> P[End]
+```
+
+---
+
 ## Setup Instructions
 
 ### 1. Clone the repository
