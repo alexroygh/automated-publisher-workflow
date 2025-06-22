@@ -1,9 +1,8 @@
 import os
 import openai
 
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 def ai_reviewer(spun_text):
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     prompt = f"""You are a reviewer assisting in polishing draft chapter content.
     Your tasks are to:
     - Improve clarity, grammar, and structure

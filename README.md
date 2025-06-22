@@ -49,7 +49,21 @@ export OPENAI_API_KEY=<your-key>
 python -m main
 ```
 
-You’ll be prompted at every phase (Writer, Reviewer, Editor) to accept or revise the AI’s suggestions.
+You'll be prompted at every phase (Writer, Reviewer, Editor) to accept or revise the AI's suggestions.
+
+---
+
+## Running Tests and Coverage
+
+To run all unit tests:
+```bash
+pytest
+```
+
+To run tests with coverage reporting:
+```bash
+coverage run -m pytest && coverage report -m
+```
 
 ---
 

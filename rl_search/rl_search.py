@@ -2,12 +2,11 @@ import os
 import numpy as np
 import openai
 
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 def rank_with_rl(query, candidates):
     """
     Uses LLM-based reward model to simulate RL-based reranking.
     """
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     scores = []
     for doc in candidates:
         try:

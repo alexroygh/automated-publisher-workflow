@@ -1,9 +1,8 @@
 import os
 import openai
 
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 def ai_writer(chapter_text):
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     prompt = f"""You are a writer helping paraphrase raw web content into a clean, well-written chapter.
 
     The input may include web artifacts like navigation menus, page footers, disclaimers, or HTML junk. Your task is to:

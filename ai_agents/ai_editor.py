@@ -1,9 +1,8 @@
 import os
 import openai
 
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
 def ai_editor(reviewed_text):
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
     prompt = f"""You are an editor performing a final polish on a book chapter.
     Ensure the output is:
     - Clean, well-formatted, and publication-ready

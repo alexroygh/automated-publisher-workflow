@@ -11,29 +11,23 @@ os.makedirs("output", exist_ok=True)
 
 URL = "https://en.wikisource.org/wiki/The_Gates_of_Morning/Book_1/Chapter_1"
 
-html = fetch_chapter_and_screenshot(URL)
-
 def extract_text_from_html(raw_html):
     soup = BeautifulSoup(raw_html, "html.parser")
     for tag in soup(["script", "style"]):
         tag.decompose()
     return soup.get_text(separator=" ", strip=True)
 
-clean_text = extract_text_from_html(html)
-
-with open("output/chapter_cleaned.txt", "w", encoding="utf-8") as f:
-    f.write(clean_text)
-
-ai_output = agentic_flow(clean_text)
-
-final_output = human_feedback_loop(ai_output)
-
-store_version(final_output, {"id": "book1_chapter1", "source": URL})
-
-with open("output/chapter_final.txt", "w", encoding="utf-8") as f:
-    f.write(final_output)
-
-print("\nSearch Result:\n", rl_search("Chapter about island and voyage", search_version))
+if __name__ == "__main__":
+    html = fetch_chapter_and_screenshot(URL)
+    clean_text = extract_text_from_html(html)
+    with open("output/chapter_cleaned.txt", "w", encoding="utf-8") as f:
+        f.write(clean_text)
+    ai_output = agentic_flow(clean_text)
+    final_output = human_feedback_loop(ai_output)
+    store_version(final_output, {"id": "book1_chapter1", "source": URL})
+    with open("output/chapter_final.txt", "w", encoding="utf-8") as f:
+        f.write(final_output)
+    print("\nSearch Result:\n", rl_search("Chapter about island and voyage", search_version))
 
 
 
