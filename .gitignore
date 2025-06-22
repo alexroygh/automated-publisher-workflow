@@ -13,3 +13,8 @@ playwright/.cache/
 
 # Secrets
 *.env
+
+# ChromaDB SQLite store
+chroma_store/
+*.sqlite3
+*.db

@@ -1,23 +1,19 @@
 import chromadb
-from chromadb.utils import embedding_functions
 
-client = chromadb.Client()
-embedding_fn = embedding_functions.DefaultEmbeddingFunction()
+client = chromadb.PersistentClient(path="./chroma_store")
 
-collection = client.get_or_create_collection(
-    name="chapters",
-    embedding_function=embedding_fn
-)
+collection = client.get_or_create_collection(name="chapters")
 
 def store_version(text, metadata):
     try:
+        print(f"📦 Storing version with metadata: {metadata}")
         collection.add(
             documents=[text],
             metadatas=[metadata],
             ids=[metadata["id"]]
         )
     except Exception as e:
-        print("Error storing version:", e)
+        print("❌ Error storing version:", e)
 
 
 def search_version(query, n_results=5):
