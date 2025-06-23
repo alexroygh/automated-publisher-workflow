@@ -4,7 +4,9 @@
 A full demo of the workflow is available as a screen recording:
 
 - **File:** `recording_automated_publisher.mp4`
-- **How to view:** Open with any standard video player (e.g., VLC, QuickTime, Windows Media Player).
+- **Location:** Project root directory
+- **How to view locally:** Open with any standard video player (e.g., VLC, QuickTime, Windows Media Player).
+- **Watch online:** [View the demo on Google Drive](https://drive.google.com/file/d/11hyaFPpdIcShUw4RhHZG1bYNMdqJsQUf/view?usp=sharing)
 
 ## Overview
 Automated Publisher is a human-in-the-loop, multi-phase book rewriting and publishing workflow powered by large language models (LLMs).
